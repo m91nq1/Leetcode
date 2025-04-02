@@ -1,0 +1,36 @@
+class Solution(object):
+    def romanToInt(self, s):
+        roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        result = 0
+        prev_value = 0
+
+        for symbol in s:
+            current_value = roman_dict[symbol]
+
+            # Check for special cases where subtraction is applied
+            if current_value > prev_value:
+                result += current_value - 2 * prev_value
+            else:
+                result += current_value
+
+            prev_value = current_value
+
+        return result
+
+# Example usage:
+sol = Solution()
+
+# Test cases
+input1 = "III"
+input2 = "LVIII"
+input3 = "MCMXCIV"
+
+output1 = sol.romanToInt(input1)
+output2 = sol.romanToInt(input2)
+output3 = sol.romanToInt(input3)
+
+print("Output 1:", output1)  # Output: 3
+print("Output 2:", output2)  # Output: 58
+print("Output 3:", output3)  # Output: 1994
+
+        
