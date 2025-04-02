@@ -1,0 +1,34 @@
+class Solution:
+    def searchRange(self, nums, target):
+        if not nums:
+            return [-1, -1]
+
+        a, b = 0, len(nums) - 1
+
+        # Find the left boundary
+        while a < b:
+            mid = a + ((b - a) >> 1)
+            if target <= nums[mid]:
+                b = mid
+            else:
+                a = mid + 1
+
+        if nums[a] != target:
+            return [-1, -1]
+
+        left = a
+
+        # Reset b to the end of the array
+        b = len(nums) - 1
+
+        # Find the right boundary
+        while a < b:
+            mid = a + ((b - a + 1) >> 1)
+            if target < nums[mid]:
+                b = mid - 1
+            else:
+                a = mid
+
+        right = a
+
+        return [left, right]
