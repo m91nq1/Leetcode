@@ -1,0 +1,10 @@
+class Solution:
+    def canJump(self, nums):
+        n = len(nums)
+        # max index where we can go
+        farest = 0
+        for i in range(n):
+            if i > farest:
+                return False
+            farest = max(farest, i + nums[i])
+        return True
