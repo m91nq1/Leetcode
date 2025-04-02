@@ -1,0 +1,21 @@
+class Solution:
+    def generateParenthesis(self, n):
+     
+        if(n == 0):
+            return []
+
+        queue = [["(", n-1, n]]
+
+        while(True):
+            tem = queue.pop()
+            l = tem[1]
+            r = tem[2]
+
+            if(r > 0):
+                if(l < r):
+                    queue = [[tem[0] + ")", l, r-1]] + queue
+                if(l > 0):
+                    queue = [[tem[0] + "(", l-1, r]] + queue
+            else:
+                queue.append(tem)
+                return [s[0] for s in queue]
